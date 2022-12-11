@@ -85,3 +85,33 @@ class Quizlet:
         # the definition is incorrect, mark the flashcard as incorrect and allow the user to try again
         self.flashcards[self.current_card].mark_incorrect()
         self.match_mode()
+        
+    def show_flashcard(self):
+    card = self.flashcards[self.current_card]
+    print("Prompt: " + card.prompt)
+    print("Answer: " + card.answer)
+
+    def show_summary(self):
+    correct = 0
+    incorrect = 0
+
+    # count the number of correct and incorrect flashcards
+    for card in self.flashcards:
+        if card.correct:
+            correct += 1
+        else:
+            incorrect += 1
+
+    # show the results
+    print("Correct: " + str(correct))
+    print("Incorrect: " + str(incorrect))
+
+    # allow the user to review or exit
+    review = input("Would you like to review the flashcards? (y/n): ")
+    if review == "y":
+        self.current_card = 0
+        self.flashcards_mode()
+    else:
+        print("Thank you for using Quizlet. Exiting.")
+        exit()
+
